@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h2>Contact Form</h2>
+<hr>
+<span>Fill in this form to contact Me</span>
+<div class = 'container'>
+    <form action = "{{url_for('contact')}}", method = "POST">
+        {{ form.csrf_token }}
+         <div class="form-group">         
+          {{ form.name.label }}
+           {% for message in form.name.errors %}
+              <div class="text-danger">{{message}}</div>
+              {%endfor%}
+          {{ form.name(placeholder="Enter your Full Name")}} 
+         
+      </div>
+     
+      <div class="form-group">         
+          {{ form.email.label }} 
+          {% for message in form.email.errors %}
+              <div class="text-danger">{{message}}</div>
+              {%endfor%}
+          {{ form.email(placeholder="Email Address")}}  
+    
+      </div>
+      <div class="form-group">         
+          {{ form.subject.label }}
+           {% for message in form.subject.errors %}
+              <div class="text-danger">{{message}}</div>
+              {%endfor%}
+          {{ form.subject(placeholder="Subject of your email")}}  
+    
+      </div>
+       <div class="form-group">         
+          {{ form.message.label }} 
+           {% for message in form.email.errors %}
+              <div class="text-danger">{{message}}</div>
+           {%endfor%}
+          {{ form.message(placeholder="Please enter your message")}}  
+    
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+
+
+{% endblock %}
